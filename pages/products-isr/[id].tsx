@@ -43,7 +43,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
   const id = context?.params?.id;
   const res = await fetch(`https://dummyjson.com/products/${id}`);
   const product: Product = await res.json();
-  console.log(product);
+
   if (!product) {
     return {
       notFound: true,

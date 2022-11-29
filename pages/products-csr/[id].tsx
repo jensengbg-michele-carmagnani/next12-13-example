@@ -23,7 +23,7 @@ function ProductPage({}: Props) {
   const router = useRouter();
 
   const { id } = router.query;
-  console.log(id);
+
   useEffect(() => {
     if (!id) return;
     const fetcher = async () => {
