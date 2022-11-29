@@ -1,6 +1,7 @@
-# Next.js + Tailwind CSS Example
+# Next 12 & 13 example  CSR SSR SSG ISR
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.2)](https://tailwindcss.com/blog/tailwindcss-v3-2) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+This is just a test to demonstrate which are the differences between Client Side Rendering, Server Side Render, Static Site Generation and Incremental Static Render among Next 12 and Next 13.
+In Next 13 I use only ISR 
 
 ## Deploy your own
 
