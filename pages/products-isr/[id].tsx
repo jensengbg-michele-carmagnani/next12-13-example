@@ -28,8 +28,6 @@ const ProductISR = ({ product }: Props) => {
 
 export default ProductISR;
 
-// Path: pages/products-ssg/[id].tsx
-// Compare this snippet from pages/products-ssg/index.tsx:
 export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch(`https://dummyjson.com/products/`);
   const data = await res.json();

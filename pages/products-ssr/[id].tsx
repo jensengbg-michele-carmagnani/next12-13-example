@@ -33,7 +33,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
 ) => {
   const id = context.params?.id;
   const res = await fetch(`https://dummyjson.com/products/${id}`);
-  const product = await res.json();
+  const product: Product = await res.json();
   return {
     props: {
       product,

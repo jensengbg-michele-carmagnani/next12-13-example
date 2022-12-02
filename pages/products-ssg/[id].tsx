@@ -1,4 +1,3 @@
-import { NOTFOUND } from 'dns';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -11,6 +10,7 @@ type Props = {
 
 const ProductSSR = ({ product }: Props) => {
   const router = useRouter();
+  // this is the fallback page that is rendered while the page is being generated in case the product is not found
   if (router.isFallback) return <div>loading...</div>;
   return (
     <div>

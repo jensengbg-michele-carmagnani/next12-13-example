@@ -1,5 +1,6 @@
+import { notFound } from 'next/navigation';
 import React from 'react';
-import { Product } from '../../../typing';
+import { Product, Products } from '../../../typing';
 
 type Props = {
   params: {
@@ -12,19 +13,21 @@ type Props = {
 // {cashe : "force-cache"} => SSG static site generation
 // {cashe : "no-cache"} => SSR server side render static site generation every single item is re-fatched
 // {next : {revalidate:10}} => ISR incremental static regeneration
-const productsFetch = async (id: string) => {
+const getProduct = async (id: string) => {
   const res = await fetch(`https://dummyjson.com/products/${id}`, {
     next: { revalidate: 10 },
   });
-  const data = res.json();
-  return data;
+  const product: Product = await res.json();
+  console.log('FETCHING NEW DATA', product);
+  return product;
 };
-const page = async ({ params }: Props) => {
-  const { id } = params;
-  const product: Product = await productsFetch(id);
+
+const ProductPage = async ({ params: { id } }: Props) => {
+  const product: Product = await getProduct(id);
+  if (!product.id) return notFound();
   return (
     <div className="flex justify-center items-center mt-16">
-      <div className="bg-amber-200 rounded p-14">
+      <div className="bg-green-200/20 border-green-500 border rounded p-14">
         <p>{product.title}</p>
         <p>{product.category}</p>
         <p>{product.brand}</p>
@@ -34,4 +37,6 @@ const page = async ({ params }: Props) => {
   );
 };
 
-export default page;
+export default ProductPage;
+
+
