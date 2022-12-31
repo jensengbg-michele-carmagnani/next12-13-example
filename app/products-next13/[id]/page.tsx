@@ -8,10 +8,10 @@ type Props = {
   };
 };
 
-//explanation about fetch and make a parrallel with next12
+//explanation about fetch and make a parallel with next12
 
-// {cashe : "force-cache"} => SSG static site generation
-// {cashe : "no-cache"} => SSR server side render static site generation every single item is re-fatched
+// {cache : "force-cache"} => SSG static site generation
+// {cache : "no-cache"} => SSR server side render every single request id  re-fetched
 // {next : {revalidate:10}} => ISR incremental static regeneration
 const getProduct = async (id: string) => {
   const res = await fetch(`https://dummyjson.com/products/${id}`, {
@@ -39,4 +39,16 @@ const ProductPage = async ({ params: { id } }: Props) => {
 
 export default ProductPage;
 
-
+const getProducts = async () => {
+  const res = await fetch('https://dummyjson.com/products');
+  const data = await res.json();
+  console.log(data);
+  const products: Product[] = data.products;
+  return products;
+};
+export async function generateStaticParams() {
+  const products: Product[] = await getProducts();
+  return products.map((product) => ({
+    id: String(product.id),
+  }));
+}

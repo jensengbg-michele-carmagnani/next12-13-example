@@ -10,11 +10,13 @@ const getAllProducts = async () => {
     cache: 'no-cache',
   });
   const data = await res.json();
+console.log(data)
   const products: Product[] = data.products;
   return products;
 };
 const ItemList = async (props: Props) => {
   const products = await getAllProducts();
+  console.log('PRODUCTS ----->', products);
   if (!products) return notFound();
   return (
     <div className="overflow-y-scroll">

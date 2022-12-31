@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import React from 'react';
-import { Product, Products } from '../../typing';
 import ItemsList from './ItemsList';
 
 type Props = {};
@@ -8,7 +7,7 @@ type Props = {};
 async function productsNext13({}: Props) {
   return (
     <div>
-      <div className="flex flex-col justify-center items-center ">
+      <div className=" w-full ">
         <main className="max-w-lg">
           <div className="">
             {/*@ts-ignore */}
