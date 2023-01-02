@@ -7,7 +7,7 @@ export default function RootLayout({
 }) {
   return (
     <main className="flex ">
-      <div className="pl-10 overflow-auto ">
+      <div className="pl-10 overflow-auto min-w-[50%] ">
         {/* @ts-ignore */}
         <ItemList />
       </div>
