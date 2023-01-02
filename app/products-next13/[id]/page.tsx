@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import React from 'react';
-import { Product, Products } from '../../../typing';
+import { Product } from '../../../typing';
 
 type Props = {
   params: {
@@ -10,12 +10,12 @@ type Props = {
 
 //explanation about fetch and make a parallel with next12
 
-// {cache : "force-cache"} => SSG static site generation
 // {cache : "no-cache"} => SSR server side render every single request id  re-fetched
+// {cache : "force-cache"} => SSG static site generation
 // {next : {revalidate:10}} => ISR incremental static regeneration
 const getProduct = async (id: string) => {
   const res = await fetch(`https://dummyjson.com/products/${id}`, {
-    next: { revalidate: 10 },
+    next: { revalidate: 30 },
   });
   const product: Product = await res.json();
   console.log('FETCHING NEW DATA', product);
@@ -27,10 +27,14 @@ const ProductPage = async ({ params: { id } }: Props) => {
   if (!product.id) return notFound();
   return (
     <div className="flex justify-center items-center mt-16">
-      <div className="bg-green-200/20 border-green-500 border rounded p-14">
-        <p>{product.title}</p>
-        <p>{product.category}</p>
-        <p>{product.brand}</p>
+      <div className="bg-green-200/20 border-green-500 border rounded p-14 space-y-3">
+        <p className="text-4xl">{product.title}</p>
+        <p className="underline">{product.category}</p>
+        <p>
+          {' '}
+          Brand:{' '}
+          <span className="underline  decoration-red-500">{product.brand}</span>
+        </p>
         <p>{product.price} $</p>
       </div>
     </div>

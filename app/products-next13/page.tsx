@@ -6,16 +6,12 @@ type Props = {};
 
 async function productsNext13({}: Props) {
   return (
-    <div>
-      <div className=" w-full ">
-        <main className="max-w-lg">
-          <div className="">
-            {/*@ts-ignore */}
-            <ItemsList />
-          </div>
-        </main>
+    <main className="w-full max-w-lg mx-auto">
+      <div className="">
+        {/*@ts-ignore */}
+        <ItemsList />
       </div>
-    </div>
+    </main>
   );
 }
 
